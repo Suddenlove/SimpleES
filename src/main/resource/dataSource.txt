@@ -1,0 +1,123 @@
+funcion : genString
+param : n INT
+return : VARCHAR(255)
+BEGIN   
+DECLARE chars_str varchar(100) DEFAULT 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';   
+DECLARE return_str varchar(255) DEFAULT '' ;  
+DECLARE i INT DEFAULT 0;   
+WHILE i < n DO   
+SET return_str = concat(return_str,substring(chars_str , FLOOR(1 + RAND()*62 ),1));   
+SET i = i +1;   
+END WHILE;   
+RETURN return_str;
+END
+
+procedure : add_stock
+BEGIN
+ DECLARE i INT DEFAULT 1;
+	WHILE(i <= n) DO
+		INSERT INTO book_stock_m(id, book_stock_amount) VALUES(i, ROUND(RAND() * 50));
+		SET i = i + 1;
+	END WHILE;
+END
+
+procedure : add_saleattr
+BEGIN
+	DECLARE i INT DEFAULT 1;
+	WHILE i <= n DO
+		INSERT INTO book_saleattr (id, `name`) VALUES(i, genString(8));
+		SET i = i + 1;
+	END WHILE;
+END
+
+procedure : add_saleamount
+BEGIN
+	DECLARE m INT DEFAULT 1;
+	WHILE m <= i DO
+		INSERT INTO book_saleamount_m(id, book_recentAmout, book_totalAmount) VALUES(m, ROUND(RAND() * 20), ROUND(RAND() * 10 + 21));
+		SET m = m+ 1;
+	END WHILE;  
+END
+
+procedure : add_press
+BEGIN
+	DECLARE m INT DEFAULT 1;
+	WHILE m <= i DO
+		INSERT INTO book_press (id, press_name, press_address, press_mainBook) VALUES(100 + m,
+				genString(10), genString(18), genString(8));
+		SET m = m + 1;
+	END WHILE;
+END
+
+prodedure : add_category
+BEGIN    
+  DECLARE i INT DEFAULT 1;  
+    WHILE (i <= n ) DO  
+      INSERT into category(id, `name`, `status`) VALUES (1000000 + i, genString(8), i%2);  
+      SET i=i+1;  
+    END WHILE;  
+END
+
+procedure : add_book
+BEGIN 
+	DECLARE m INT DEFAULT 259101;
+	WHILE m <= i DO	
+		INSERT INTO book VALUES(m ,genString(5), genString(15), genString(5), ROUND(RAND() * 10 + 20), ROUND(RAND() * 19 + 1),
+				(SELECT CASE WHEN book_stock_amount > 0 THEN 1 ELSE 0 END FROM book_stock WHERE id = m),
+				m % 2, 1, ROUND(RAND() * 19 + 101), '2017-01-01 00:00:00',
+				ROUND(RAND() * 29 + 1), i % 2, ROUND(RAND() * 9 + 1000001));
+		SET m = m + 1;
+	END WHILE;
+END
+
+CREATE TABLE `book` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'book_id',
+  `book_pressId` int(11) DEFAULT NULL COMMENT 'book出版社id',
+  `category_id` int(11) DEFAULT NULL COMMENT 'book类目id',
+  `book_name` varchar(30) DEFAULT NULL COMMENT 'book主标题',
+  `book_subName` varchar(255) DEFAULT NULL COMMENT 'book副标题',
+  `book_author` varbinary(30) DEFAULT NULL COMMENT 'book作者',
+  `book_price` int(11) DEFAULT NULL COMMENT 'book价格',
+  `book_rank` int(4) DEFAULT NULL COMMENT 'book排名',
+  `book_stock` int(4) DEFAULT NULL COMMENT 'book库存',
+  `book_sellerType` int(4) DEFAULT NULL COMMENT 'book是否自营',
+  `book_status` int(4) DEFAULT NULL COMMENT 'book状态:0.未在售;1.在售',
+  `book_onLine_time` varchar(30) DEFAULT NULL COMMENT 'book上架时间',
+  `book_saleAttributeId` int(11) DEFAULT NULL COMMENT 'book销售属性id',
+  `book_hasEbook` int(4) DEFAULT NULL COMMENT 'book是否有电子书',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=260001 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `book_press` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'press_id',
+  `press_name` varchar(30) DEFAULT NULL COMMENT 'press名称',
+  `press_address` varchar(50) DEFAULT NULL COMMENT 'press地址',
+  `press_mainBook` varchar(255) DEFAULT NULL COMMENT 'press主要出版读物',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `book_saleamount` (
+  `id` int(11) NOT NULL COMMENT 'book_id',
+  `book_recentAmout` int(11) DEFAULT '0' COMMENT 'book最近销量',
+  `book_totalAmount` int(11) DEFAULT '0' COMMENT 'book总销量',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `book_saleattr` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'book销售属性id',
+  `name` varchar(50) DEFAULT NULL COMMENT 'book销售属性',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `book_stock` (
+  `id` int(11) NOT NULL COMMENT 'book_id',
+  `book_stock_amount` int(10) DEFAULT '0' COMMENT 'book库存',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'category_id',
+  `name` varchar(30) DEFAULT NULL COMMENT 'category名称',
+  `status` int(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1000011 DEFAULT CHARSET=utf8;
