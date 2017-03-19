@@ -85,6 +85,7 @@ public class CacheManager {
 		logger.info("=====>第二个command加载完毕...");
 		logger.info("加载完毕...");
 		
+		service.shutdown();
 	}
 
 	private void excuteLoad(ExecutorService service,List<CacheCommand> cacheCommands) {

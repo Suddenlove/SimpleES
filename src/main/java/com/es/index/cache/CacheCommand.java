@@ -33,7 +33,4 @@ public class CacheCommand implements Callable<Boolean>{
 		return null;
 	}
 
-	public void setCacheService(CacheService cacheService) {
-		this.cacheService = cacheService;
-	}
 }

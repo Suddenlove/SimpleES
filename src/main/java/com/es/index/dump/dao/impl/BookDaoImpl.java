@@ -7,14 +7,14 @@ import java.util.Map;
 import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 
 import com.es.index.dump.dao.BookDao;
-import com.es.model.Book;
+import com.es.model.BookBook;
 
 @SuppressWarnings("deprecation")
 public class BookDaoImpl extends SqlMapClientDaoSupport implements BookDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Book> getAllBook(List<Long> bookIds) {
+	public List<BookBook> getAllBook(List<Long> bookIds) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("bookIds", bookIds);
 		return getSqlMapClientTemplate().queryForList("getAllBooks", map);

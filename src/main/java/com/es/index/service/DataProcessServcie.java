@@ -6,5 +6,5 @@ import com.es.frame.DataProcessContext;
 @SuppressWarnings("hiding")
 public interface DataProcessServcie<BookRecord> {
 	
-	void process(DataProcessContext<BookRecord> processContext);
+	void process(DataProcessContext<BookRecord> processContext) throws Exception;
 }

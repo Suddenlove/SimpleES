@@ -2,10 +2,10 @@ package com.es.index.dump.dao;
 
 import java.util.List;
 
-import com.es.model.Book;
+import com.es.model.BookBook;
 
 public interface BookDao {
 	
-	List<Book> getAllBook(List<Long> bookIds);
+	List<BookBook> getAllBook(List<Long> bookIds);
 
 }

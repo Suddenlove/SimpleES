@@ -1,17 +1,12 @@
 package com.es.model;
 
-import java.io.Serializable;
+import java.util.List;
 
-public class Book implements Serializable, Cloneable {
+public class Book {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private long id;
-	private long pressId;
 	private long categoryId;
-	private int saleAttributeId;
+	private String categoryName;
 	private String name;
 	private String subName;
 	private String author;
@@ -21,6 +16,15 @@ public class Book implements Serializable, Cloneable {
 	private int status;
 	private String onLineTime;
 	private int hasEBook;
+	private long pressId;
+	private String pressName;
+	private int stock;
+	private int stockStatus;
+	private List<Long> saleAttrIds;
+	private List<String> saleAttrNames;
+	private int saleAmount;
+	private int recentSaleAmount;
+	private int totalSaleAmount;
 
 	public long getId() {
 		return id;
@@ -30,20 +34,20 @@ public class Book implements Serializable, Cloneable {
 		this.id = id;
 	}
 
-	public long getPressId() {
-		return pressId;
-	}
-
-	public void setPressId(long pressId) {
-		this.pressId = pressId;
-	}
-
 	public long getCategoryId() {
 		return categoryId;
 	}
 
 	public void setCategoryId(long categoryId) {
 		this.categoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
 	public String getName() {
@@ -110,14 +114,6 @@ public class Book implements Serializable, Cloneable {
 		this.onLineTime = onLineTime;
 	}
 
-	public int getSaleAttributeId() {
-		return saleAttributeId;
-	}
-
-	public void setSaleAttributeId(int saleAttributeId) {
-		this.saleAttributeId = saleAttributeId;
-	}
-
 	public int getHasEBook() {
 		return hasEBook;
 	}
@@ -126,32 +122,86 @@ public class Book implements Serializable, Cloneable {
 		this.hasEBook = hasEBook;
 	}
 
-	@Override
-	public String toString() {
-		return "Book [id=" + id + ", pressId=" + pressId + ", categoryId=" + categoryId + ", name=" + name
-				+ ", subName=" + subName + ", author=" + author + ", price=" + price + ", rank=" + rank
-				+ ", sellerType=" + sellerType + ", status=" + status + ", onLineTime=" + onLineTime
-				+ ", saleAttributeId=" + saleAttributeId + ", hasEBook=" + hasEBook + "]";
+	public long getPressId() {
+		return pressId;
+	}
+
+	public void setPressId(long pressId) {
+		this.pressId = pressId;
+	}
+
+	public String getPressName() {
+		return pressName;
+	}
+
+	public void setPressName(String pressName) {
+		this.pressName = pressName;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public int getStockStatus() {
+		return stockStatus;
+	}
+
+	public void setStockStatus(int stockStatus) {
+		this.stockStatus = stockStatus;
+	}
+
+	public List<Long> getSaleAttrIds() {
+		return saleAttrIds;
+	}
+
+	public void setSaleAttrIds(List<Long> saleAttrIds) {
+		this.saleAttrIds = saleAttrIds;
+	}
+
+	public List<String> getSaleAttrNames() {
+		return saleAttrNames;
+	}
+
+	public void setSaleAttrNames(List<String> saleAttrNames) {
+		this.saleAttrNames = saleAttrNames;
+	}
+
+	public int getSaleAmount() {
+		return saleAmount;
+	}
+
+	public void setSaleAmount(int saleAmount) {
+		this.saleAmount = saleAmount;
+	}
+
+	public int getRecentSaleAmount() {
+		return recentSaleAmount;
+	}
+
+	public void setRecentSaleAmount(int recentSaleAmount) {
+		this.recentSaleAmount = recentSaleAmount;
+	}
+
+	public int getTotalSaleAmount() {
+		return totalSaleAmount;
+	}
+
+	public void setTotalSaleAmount(int totalSaleAmount) {
+		this.totalSaleAmount = totalSaleAmount;
 	}
 
 	@Override
-	protected Book clone() throws CloneNotSupportedException {
-		super.clone();
-		Book b = new Book();
-		b.id = this.id;
-		b.categoryId = this.categoryId;
-		b.pressId = this.pressId;
-		b.saleAttributeId = this.saleAttributeId;
-		b.name = this.name;
-		b.subName = this.subName;
-		b.author = this.author;
-		b.price = this.price;
-		b.rank = this.rank;
-		b.sellerType = this.sellerType;
-		b.status = this.status;
-		b.onLineTime = this.onLineTime;
-		b.hasEBook = this.hasEBook;
-		return b;
+	public String toString() {
+		return "Book [id=" + id + ", categoryId=" + categoryId + ", categoryName=" + categoryName + ", name=" + name
+				+ ", subName=" + subName + ", author=" + author + ", price=" + price + ", rank=" + rank
+				+ ", sellerType=" + sellerType + ", status=" + status + ", onLineTime=" + onLineTime + ", hasEBook="
+				+ hasEBook + ", pressId=" + pressId + ", pressName=" + pressName + ", stock=" + stock + ", stockStatus="
+				+ stockStatus + ", saleAttrIds=" + saleAttrIds + ", saleAttrNames=" + saleAttrNames + ", saleAmount="
+				+ saleAmount + ", recentSaleAmount=" + recentSaleAmount + ", totalSaleAmount=" + totalSaleAmount + "]";
 	}
 
 }

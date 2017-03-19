@@ -8,18 +8,18 @@ import org.apache.commons.collections.CollectionUtils;
 
 import com.es.index.dump.dao.BookDao;
 import com.es.index.dump.service.BookService;
-import com.es.model.Book;
+import com.es.model.BookBook;
 
 public class BookServiceImpl implements BookService{
 
 	private BookDao bookDao;
 	
 	@Override
-	public Map<Long, Book> getAllBook(List<Long> bookIds) {
-		Map<Long, Book> bookMap = new HashMap<Long, Book>();
-		List<Book> books = bookDao.getAllBook(bookIds);
+	public Map<Long, BookBook> getAllBook(List<Long> bookIds) {
+		Map<Long, BookBook> bookMap = new HashMap<Long, BookBook>();
+		List<BookBook> books = bookDao.getAllBook(bookIds);
 		if(CollectionUtils.isNotEmpty(books)){
-			for(Book book : books){
+			for(BookBook book : books){
 				bookMap.put(book.getId(), book);
 			}
 		}

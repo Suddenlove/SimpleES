@@ -9,7 +9,7 @@ import com.es.index.dump.service.BookSaleAttrService;
 import com.es.index.dump.service.BookService;
 import com.es.index.dump.service.BookStockService;
 import com.es.index.dump.service.CategoryService;
-import com.es.model.Book;
+import com.es.model.BookBook;
 import com.es.model.BookPress;
 import com.es.model.BookSaleAmount;
 import com.es.model.BookSaleAttr;
@@ -25,7 +25,7 @@ public class DataDumpService {
 	private BookStockService bookStockService;
 	private CategoryService categoryService;
 
-	public Map<Long, Book> getAllBook(List<Long> bookIds) {
+	public Map<Long, BookBook> getAllBook(List<Long> bookIds) {
 		return bookService.getAllBook(bookIds);
 	}
 
