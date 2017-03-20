@@ -22,7 +22,6 @@ public class Book {
 	private int stockStatus;
 	private List<Long> saleAttrIds;
 	private List<String> saleAttrNames;
-	private int saleAmount;
 	private int recentSaleAmount;
 	private int totalSaleAmount;
 
@@ -170,14 +169,6 @@ public class Book {
 		this.saleAttrNames = saleAttrNames;
 	}
 
-	public int getSaleAmount() {
-		return saleAmount;
-	}
-
-	public void setSaleAmount(int saleAmount) {
-		this.saleAmount = saleAmount;
-	}
-
 	public int getRecentSaleAmount() {
 		return recentSaleAmount;
 	}
@@ -201,7 +192,7 @@ public class Book {
 				+ ", sellerType=" + sellerType + ", status=" + status + ", onLineTime=" + onLineTime + ", hasEBook="
 				+ hasEBook + ", pressId=" + pressId + ", pressName=" + pressName + ", stock=" + stock + ", stockStatus="
 				+ stockStatus + ", saleAttrIds=" + saleAttrIds + ", saleAttrNames=" + saleAttrNames + ", saleAmount="
-				+ saleAmount + ", recentSaleAmount=" + recentSaleAmount + ", totalSaleAmount=" + totalSaleAmount + "]";
+				+ ", recentSaleAmount=" + recentSaleAmount + ", totalSaleAmount=" + totalSaleAmount + "]";
 	}
 
 }

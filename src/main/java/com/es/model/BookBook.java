@@ -1,6 +1,7 @@
 package com.es.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class BookBook implements Serializable {
 
@@ -20,9 +21,18 @@ public class BookBook implements Serializable {
 	private int status;
 	private String onLineTime;
 	private int hasEBook;
+	private List<Long> saleAttrs;
 
 	public long getId() {
 		return id;
+	}
+
+	public List<Long> getSaleAttrs() {
+		return saleAttrs;
+	}
+
+	public void setSaleAttrs(List<Long> saleAttrs) {
+		this.saleAttrs = saleAttrs;
 	}
 
 	public void setId(long id) {
