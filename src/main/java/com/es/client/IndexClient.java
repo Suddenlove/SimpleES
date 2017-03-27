@@ -1,15 +1,22 @@
 package com.es.client;
 
 import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
+import org.elasticsearch.action.bulk.BulkRequestBuilder;
+import org.elasticsearch.action.bulk.BulkResponse;
+import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.client.transport.TransportClient;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.transport.InetSocketTransportAddress;
 
 import com.es.util.PropertiesUtil;
+import com.google.gson.Gson;
 
 public class IndexClient {
 
@@ -27,6 +34,33 @@ public class IndexClient {
 			initClient();
 		}
 		return indexClient;
+	}
+	
+	public void createIndex(String indexName, String templateContent){
+		CreateIndexRequest request = new CreateIndexRequest(indexName).source(templateContent);
+		client.admin().indices().create(request).actionGet();
+	}
+	
+	public static boolean bulkIndex(String indexVerison, String indexName, List<Map<String, Object>> indexMap){
+		BulkRequestBuilder bulkIndexBuilder = client.prepareBulk();
+		Object id;
+		String jsonStr;
+		Gson gson = new Gson();
+		for(Map<String, Object> map : indexMap){
+			id = map.get("id");
+			if(id == null){
+				continue;
+			}
+			jsonStr = gson.toJson(map);
+			IndexRequestBuilder requestBuilder = client.prepareIndex(indexName, indexVerison,null).setSource(jsonStr).setId(String.valueOf(id));
+			bulkIndexBuilder.add(requestBuilder);
+		}
+		BulkResponse response = bulkIndexBuilder.execute().actionGet();
+		if(response.hasFailures()){
+			logger.error("bulk index error : " + response.buildFailureMessage());
+			return false;
+		}
+		return true;
 	}
 
 	private static void initClient() {

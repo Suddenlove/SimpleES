@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public final class ResourceLoader {
+public class ResourceLoader {
 	private static ResourceLoader loader = new ResourceLoader();
 	private static Map<String, Properties> loaderMap = new HashMap<String, Properties>();
 

@@ -7,7 +7,7 @@ public interface DataIndexService {
 	
 	String initIndex(String indexName) throws Exception;
 	
-	boolean buildIndex(String indexName, String indexVersion, List<Map<Long, Object>> indexDocMap) throws Exception;
+	boolean buildIndex(String indexName, String indexVersion, List<Map<String, Object>> indexDocMap) throws Exception;
 	
 	boolean changeIndex(String indexName, String indexVersion) throws Exception;
 	

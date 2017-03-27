@@ -70,6 +70,11 @@ BEGIN
 	END WHILE;
 END
 
+INSERT INTO index_mapping(field, is_index, is_store) VALUES('id', 1, 1),
+('categoryId', 1, 1),('categoryName', 1, 1),('name', 1, 1),('subName', 1, 1),('author', 1, 1),('price', 1, 1),('rank', 1, 1),('sellerType', 1, 1),
+('status', 1, 1),('onLineTime', 1, 1),('hasBook', 1, 1),('pressId', 1, 1),('pressName', 1, 1),('stock', 1, 1),('stockStatus', 1, 1),('saleAttrIds', 0, 0),
+('saleAttrNames', 0, 0),('recentSaleAmount', 1, 1),('totalSaleAmount', 1, 1)
+
 CREATE TABLE `book` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'book_id',
   `book_pressId` int(11) DEFAULT NULL COMMENT 'book³ö°æÉçid',
@@ -121,3 +126,11 @@ CREATE TABLE `category` (
   `status` int(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1000011 DEFAULT CHARSET=utf8;
+
+CREATE TABLE index_mapping(
+	`id` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+	`field` VARCHAR(20) DEFAULT NULL COMMENT '×Ö¶Îfield',
+	`is_index` INT(4) DEFAULT NULL COMMENT 'ÊÇ·ñË÷Òý',
+	`is_store` INT(4) DEFAULT NULL COMMENT 'ÊÇ·ñ´æ´¢',
+	PRIMARY KEY (`id`)
+)ENGINE=INNODB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
