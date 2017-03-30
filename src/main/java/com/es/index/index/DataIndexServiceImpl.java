@@ -48,7 +48,7 @@ public class DataIndexServiceImpl implements DataIndexService{
 	}
 
 	@Override
-	public boolean updateIndex(List<Long> booIds, List<Map<Long, Object>> indexDocMap) throws Exception {
+	public boolean updateIndex(List<Long> bookIds, List<Map<Long, Object>> indexDocMap) throws Exception {
 		return false;
 	}
 
